@@ -5,7 +5,7 @@ from chatterbot.trainers import ChatterBotCorpusTrainer
 
 
 
-chatterbot = ChatBot('Terminal',
+chatterbot = ChatBot('ALICE',
     storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
     logic_adapters=[
         "chatterbot.logic.MathematicalEvaluation",
@@ -26,8 +26,7 @@ chatterbot = ChatBot('Terminal',
 chatterbot.set_trainer(ChatterBotCorpusTrainer)
 
 chatterbot.train(
-      "chatterbot.corpus.english.greetings",
-    "chatterbot.corpus.english.conversations"
+      "chatterbot.corpus.english",
     )
 print('Type something to begin...')
 
