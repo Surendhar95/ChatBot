@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from chatterbot import ChatBot
 import logging
-from chatterbot.trainers import ChatterBotCorpusTrainer
+from chatterbot.trainers import UbuntuCorpusTrainer
 
 
 
@@ -9,11 +9,16 @@ chatterbot = ChatBot('ALICE',
     storage_adapter='chatterbot.storage.MongoDatabaseAdapter',
     logic_adapters=[
         "chatterbot.logic.MathematicalEvaluation",
-       
+        "chatterbot.logic.TimeLogicAdapter",
         {
          "import_path": "chatterbot.logic.BestMatch",
         "response_selection_method":"chatterbot.response_selection.get_first_response" ,
          "statement_comparison_function": "chatterbot.comparisons.levenshtein_distance"
+        },
+        {
+            'import_path': 'chatterbot.logic.LowConfidenceAdapter',
+            'threshold': 0.50,
+            'default_response': 'I am sorry, but I do not understand.'
         }
     ],
     filters=[
@@ -23,11 +28,9 @@ chatterbot = ChatBot('ALICE',
     output_adapter='chatterbot.output.TerminalAdapter',
     database='chatterbot-database'
 )
-chatterbot.set_trainer(ChatterBotCorpusTrainer)
+chatterbot.set_trainer(UbuntuCorpusTrainer)
 
-chatterbot.train(
-      "chatterbot.corpus.english",
-    )
+chatterbot.train()
 print('Type something to begin...')
 
 while True:

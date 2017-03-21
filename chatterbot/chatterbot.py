@@ -5,7 +5,6 @@ from .input import InputAdapter
 from .output import OutputAdapter
 from . import utils
 
-
 class ChatBot(object):
     """
     A conversational dialog chat bot.
