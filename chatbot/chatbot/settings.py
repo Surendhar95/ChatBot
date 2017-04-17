@@ -46,11 +46,8 @@ CHATTERBOT = {
     'logic_adapters': [
         'chatterbot.logic.MathematicalEvaluation',
         'chatterbot.logic.TimeLogicAdapter',
-        {
-         'import_path': 'chatterbot.logic.BestMatch',
-        'response_selection_method':'chatterbot.response_selection.get_first_response' ,
-         'statement_comparison_function': 'chatterbot.comparisons.levenshtein_distance'
-        }
+        'chatterbot.logic.BestMatch',
+
     ],
     'filters':[
         'chatterbot.filters.RepetitiveResponseFilter',

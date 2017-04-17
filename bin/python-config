@@ -1,4 +1,4 @@
-#!/home/se/python_projects/bin/python
+#!/home/se/chatbot_REST/bin/python
 
 import sys
 import getopt
