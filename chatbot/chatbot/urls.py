@@ -13,19 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.conf.urls import url, include
     2. Add a URL to urlpatterns:  url(r'^blog/', include('blog.urls'))
 """
-from django.conf.urls import include,url
+from django.conf.urls import include, url
 from django.contrib import admin
 from chatterbot.ext.django_chatterbot import urls as chatterbot_urls
 from chatbot.views import ChatterBotAppView
 
+app_name = "chatterbot"
+
 # urlpatterns = [
-#  	url(r'^$', ChatterBotAppView.as_view(), name='main'),
-#     url(r'^admin/', admin.site.urls),
 #     url(r'^chatterbot/', include('chatterbot.ext.django_chatterbot.urls', namespace='chatterbot'))
 #]
 urlpatterns = [
- 	# url(r'^chatterbot/', include('chatterbot.ext.django_chatterbot.urls', namespace='chatterbot')),
     url(r'^$', ChatterBotAppView.as_view(), name='main'),
-    url(r'^admin/', include(admin.site.urls), name='admin'),
-    url(r'^api/chatterbot/', include(chatterbot_urls, namespace='chatterbot')),
+    url(r'^admin/', admin.site.urls, name='admin'),
+    url(r'^api/chatterbot/', include((chatterbot_urls, app_name), namespace='chatterbot')),
 ]
